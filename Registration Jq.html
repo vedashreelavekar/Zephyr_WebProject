@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        label {
+            color: #292929;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        #bgVideo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="bgVideo"><source src="Images/wd video3.mp4" type="video/mp4"></video>
+    
+    <div class="container">
+        <h1>Club Registration</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="e.g., Vedashree Lavekar">
+            </div>
+
+            <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="e.g., vedashree.lavekar24@vit.edu">
+            </div>
+
+            <div class="form-group">
+                <label>PRN:</label>
+                <input type="tel" id="prn" name="prn" placeholder="1241*">
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Branch:</label>
+                <select id="branch" name="branch">
+                    <option value="">Select</option>
+                    <option>CS</option>
+                    <option>CS-IT</option>
+                    <option>CS-AIML</option>
+                    <option>CS-AI</option>
+                    <option>CS-SE</option>
+                    <option>CS-DS</option>
+                    <option>CS-IOT</option>
+                    <option>Civil Engineering</option>
+                    <option>Instrumentation & Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="9635**">
+            </div>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#registrationForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Validation
+                const name = $('#name').val().trim();
+                const gender = $('#gender').val();
+                const email = $('#email').val().trim();
+                const prn = $('#prn').val().trim();
+                const phone = $('#phone').val().trim();
+                const branch = $('#branch').val();
+
+                if (!name || !gender || !email || !prn || !phone || !branch )
+                {
+                    alert('Please fill out all fields.');
+                    return;
+                }
+
+                if (!validateEmail(email)) 
+                {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                if (!validatePhone(phone))
+                {
+                    alert('Please enter a valid phone number.');
+                    return;
+                }
+
+                // Store data
+                const registration = {
+                    name,
+                    gender,
+                    email,
+                    prn,
+                    phone,
+                    branch
+                };
+
+                let registrations = localStorage.getItem('registrations');
+                registrations = registrations ? JSON.parse(registrations) : [];
+                registrations.push(registration);
+                localStorage.setItem('registrations', JSON.stringify(registrations));
+
+                alert('Registration successful!');
+                $('#registrationForm')[0].reset();
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function validatePhone(phone) {
+                const re = /^[0-9]{10}$/;
+                return re.test(String(phone));
+            }
+        });
+    </script>
+
+</body>
+</html>

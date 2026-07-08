@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <title>Update</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .section-container {
+      padding: 10px;
+      background-color: rgb(255, 255, 255, 0.2);
+    }
+    .member-box {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: rgb(36, 32, 32);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: -moz-hidden-unscrollable;
+}
+.member-box img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;  
+  border-right: none;  
+}
+
+    .member-content {
+      padding: 20px;
+    }
+    .member-title {
+      margin: 0;
+      font-size: 1.5em;
+      color: white;
+    }
+    .member-name {
+      font-size: 1.2em;
+      color: white;
+    }
+    .member-description {
+      font-size: 1em;
+      color: rgb(226, 169, 63);
+    }
+    .update-form {
+      background-color: rgb(96, 134, 139);
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 50%;
+      margin: 0 auto;
+    }
+    .update-form h2 {
+      margin-top: 0;
+    }
+    .update-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .update-form select,
+    .update-form input,
+    .update-form textarea,
+    .update-form button {
+      width: 100%;
+      padding: 9px;
+      margin-bottom: 9px;
+      border: 1px transparent #ddd;
+      border-radius: 3px;
+    }
+    .update-form button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    .update-form button:hover {
+      background-color: #218838;
+    }
+    .success-stories {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    .success-stories h2 {
+      margin-top: 0;
+    }
+    .success-stories textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .success-stories button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .success-stories button:hover {
+      background-color: #0056b3;
+    }
+    #bgvideo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bgvideo">
+    <source src="Images/wd video4.mov" type="video/mp4">
+  </video>
+  <section class="section-container">
+    <link rel="stylesheet" href="update.css">
+    <h2>Community Members</h2>
+    <!-- Member 1 -->
+    <div class="member-box" id="member-1">
+      <img src="Images/update1.png" alt="President">
+      <div class="member-content">
+        <h3 class="member-title">President</h3>
+        <p class="member-name">Devyani Manmode</p>
+        <p class="member-description">
+          Devyani is the current President of the VIT University Clubs, bringing leadership and dedication to all club activities.
+        </p>
+      </div>
+    </div>
+    <!-- Member 2 -->
+    <div class="member-box" id="member-2">
+      <img src="Images/update2.png" alt="Co-President">
+      <div class="member-content">
+        <h3 class="member-title">Co-President</h3>
+        <p class="member-name">Bhoomika Goyal</p>
+        <p class="member-description">
+          Bhoomika is the Co-President, ensuring smooth coordination between all club members and supporting club events.
+        </p>
+      </div>
+    </div>
+    <!-- Member 3 -->
+    <div class="member-box" id="member-3">
+      <img src="Images/update3.png" alt="Assistant">
+      <div class="member-content">
+        <h3 class="member-title">Assistant</h3>
+        <p class="member-name">Riya Kamble</p>
+        <p class="member-description">
+          Riya leads the team in creative and operational planning for all major club projects and activities.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Update Form -->
+  <div class="update-form">
+    <h2>Update Club Committee Member</h2>
+    <label>
+      Select Member:
+      <select id="member-select">
+        <option value="member-1">President - Devyani Manmode</option>
+        <option value="member-2">Co-President - Bhoomika Goyal</option>
+        <option value="member-3">Assistant - Riya Kamble</option>
+      </select>
+    </label>
+    <label>
+      New Role:
+      <input type="text" id="new-role" placeholder="e.g., President">
+    </label>
+    <label>
+      New Name:
+      <input type="text" id="new-name" placeholder="e.g., John Doe">
+    </label>
+    <label>
+      New Description:
+      <textarea id="new-description" placeholder="Enter updated description"></textarea>
+    </label>
+    <button type="button" id="update-btn">Update Member</button>
+  </div>
+  <!-- Success Stories -->
+  <section class="success-stories section-container container mt-5">
+    <h2 class="text-center">Success Stories</h2>
+    <div class="form-group">
+      <textarea id="story-input" class="form-control" rows="5" placeholder="Write a success story..."></textarea>
+    </div>
+    <div class="text-center">
+      <button id="email-story-btn" class="btn btn-primary">Email Success Stories</button>
+    </div>
+  </section>
+  <script>
+    // Update Committee Member
+    document.getElementById('update-btn').addEventListener('click', () => {
+      const memberId = document.getElementById('member-select').value;
+      const newRole = document.getElementById('new-role').value;
+      const newName = document.getElementById('new-name').value;
+      const newDescription = document.getElementById('new-description').value;
+
+      const memberBox = document.getElementById(memberId);
+      if (newRole) memberBox.querySelector('.member-title').textContent = newRole;
+      if (newName) memberBox.querySelector('.member-name').textContent = newName;
+      if (newDescription) memberBox.querySelector('.member-description').textContent = newDescription;
+
+      alert('Member details updated!');
+    });
+
+    // Email Success Stories
+    document.getElementById('email-story-btn').addEventListener('click', () => {
+      const story = document.getElementById('story-input').value;
+      if (!story.trim()) {
+        alert('Please write a success story before emailing.');
+      } else {
+        alert('Success story emailed!');
+      }
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
